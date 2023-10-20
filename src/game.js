@@ -24,6 +24,8 @@ class Game {
     this.startmusic.volume = 0.2
     this.music = new Audio("./assets/sfx/overworld.ogg");
     this.music.volume = 0.2;
+    this.lovemusic = new Audio("./assets/sfx/love.ogg");
+    this.lovemusic.volume = 0.2;
     // this.music.autoplay();
     // this.music.loop = true;
     // this.music.play();
@@ -245,6 +247,15 @@ class Game {
       this.scanGrid(collisionCtx);
       this.setSpawns();
     } else {
+      if (this.board.pos.y === 1952 && this.board.pos.x === 2304) {
+        this.hud.renderMarryPage();
+        this.lovemusic.play();
+        setTimeout(function(){
+          this.destroyUnits();
+        },1000);
+        this.music.pause();       
+      }
+      console.log(this.board.pos.y,  this.board.pos.x);
       let playerDirection = this.player.pos.direction
       if (playerDirection === 96) {
         this.board.pos.y -= 8;

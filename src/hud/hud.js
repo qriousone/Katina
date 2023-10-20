@@ -19,11 +19,20 @@ class Hud {
     this.deathPage = new Image();
     this.deathPage.src = './assets/images/ui/deathpage.png'
 
+    this.marryPage = new Image();
+    this.marryPage.src = './assets/images/ui/marry.png'
+
     this.maxHearts = 6;
     this.slotA = null;
     this.slotB = null;
 
     this.death = false;
+  }
+
+  renderMarryPage() {
+    this.ctx.drawImage(
+      this.marryPage, 0, 0
+    )
   }
 
   renderStartPage() {

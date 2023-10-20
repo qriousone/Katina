@@ -7,7 +7,7 @@ html body {
     radial-gradient(black 15%, transparent 16%) 8px 8px,
     radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
     radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-    background-color:#282828;
+    background-color:#1b1b1b;
     background-size:16px 16px;
 }
 
@@ -19,7 +19,6 @@ header {
   left: 0;
   right: 0;
   margin: auto;
-  background-color: grey;
   border-radius: 0 0 15px 15px;
 }
 
@@ -28,7 +27,6 @@ canvas {
   left: 0;
   right: 0;
   margin: auto;
-  border: 1px solid silver;
   border-radius: 15px;
 }
 
@@ -61,11 +59,11 @@ footer {
 #logo {
   margin-top: 5px;
   margin-left: 10px;
+  width: 250px
 }
 
 #game-container {
   position: relative;
-  margin: 20px;
   height: 704px;
 }
 
@@ -93,6 +91,5 @@ footer {
   left: 0;
   right: 0;
   margin: auto;
-  border: 1px solid silver;
   border-radius: 15px;
 }
