@@ -47,6 +47,8 @@ class Game {
 
     this.muted = false;
     this.live = false;
+    this.finalstage = false;
+    this.marryme = false;
     document.addEventListener('keydown', e => {
       if (e.keyCode === 13 && !this.live) {
         this.live = true;
@@ -74,6 +76,9 @@ class Game {
           this.music.loop = true;
         }, 6410);
       }
+      if (this.marryme && e.keyCode === 13) {
+        this.hud.renderWinPage();
+      }
       if (e.keyCode === 77) {
         if (this.muted) {
           this.startmusic.volume = .2
@@ -87,7 +92,7 @@ class Game {
       }
     });
   }
-  
+
   init() {
     this.board.render();
     this.hud.render()
@@ -195,7 +200,7 @@ class Game {
     let x = this.player.pos.x
     let y = this.player.pos.y
 
-    if (faceDirection === 96 && y < 634 && !this.impassableTerrain('down',ctx)) {
+    if (faceDirection === 96 && y < 634 && !this.impassableTerrain('down', ctx)) {
       this.player.move(0, 12)
     } else if (faceDirection === 144 && x > 14 && !this.impassableTerrain('left', ctx)) {
       this.player.move(-12, 0)
@@ -236,7 +241,7 @@ class Game {
       this.units.push(new Spawn(pixelPos, this.spriteCtx));
     }
   }
-  
+
   // Scrolling logic below
   scroll(collisionCtx) {
     if (!this.scrolling) return;
@@ -248,14 +253,15 @@ class Game {
       this.setSpawns();
     } else {
       if (this.board.pos.y === 1952 && this.board.pos.x === 2304) {
-        this.hud.renderMarryPage();
+        this.finalstage = true;
         this.lovemusic.play();
-        setTimeout(function(){
-          this.destroyUnits();
-        },1000);
-        this.music.pause();       
+        this.destroyUnits();
+        var $this = this;
+        setTimeout(function () {
+          $this.destroyUnits();
+        }, 1000);
+        this.music.pause();
       }
-      console.log(this.board.pos.y,  this.board.pos.x);
       let playerDirection = this.player.pos.direction
       if (playerDirection === 96) {
         this.board.pos.y -= 8;
@@ -288,6 +294,12 @@ class Game {
       this.scrolling = true;
       this.destroyUnits()
       this.scrollQueue = 768;
+    }
+    if (this.player.pos.x >= 340 && this.player.pos.x <= 400 && this.player.pos.y < 490 && this.finalstage) {
+      if (!this.marryme) {
+        this.marryme = true;
+        this.hud.renderMarryPage();
+      }
     }
   }
 

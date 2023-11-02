@@ -20,7 +20,10 @@ class Hud {
     this.deathPage.src = './assets/images/ui/deathpage.png'
 
     this.marryPage = new Image();
-    this.marryPage.src = './assets/images/ui/marry.png'
+    this.marryPage.src = './assets/images/ui/marry-2.png'
+
+    this.winPage = new Image();
+    this.winPage.src = './assets/images/ui/win.png'
 
     this.maxHearts = 6;
     this.slotA = null;
@@ -35,6 +38,12 @@ class Hud {
     )
   }
 
+  renderWinPage() {
+    console.log('ftw');
+    this.ctx.drawImage(
+      this.winPage, 0, 0
+    )
+  }
   renderStartPage() {
     this.ctx.drawImage(
       this.startPage, 0, 0
@@ -68,7 +77,7 @@ class Hud {
       696
     )
     this.updateHearts(6)
-    this.updateMiniMap({ x: 7, y: 7})
+    this.updateMiniMap({ x: 7, y: 7 })
     this.updateMoney(0)
     this.updateKeys(0)
     this.updateBombCount(0)
@@ -103,7 +112,7 @@ class Hud {
     this.ctx.fillRect(48, 48, 192, 96)
     // player dot
     this.ctx.fillStyle = '#80D010'
-    this.ctx.fillRect(51 + (gridPos.x * 12),48 + (gridPos.y * 12),9,9)
+    this.ctx.fillRect(51 + (gridPos.x * 12), 48 + (gridPos.y * 12), 9, 9)
   }
 
   updateMoney(money) {
